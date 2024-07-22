@@ -1,6 +1,12 @@
 import { useOthers } from '@liveblocks/react/suspense'
 import Image from 'next/image';
 import React from 'react'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const ActiveCollaborators = () => {
 
@@ -12,15 +18,23 @@ const ActiveCollaborators = () => {
     <ul className='collaborators-list'>
       {collaborators.map(({ id, avatar, name, color }) => (
         <li key={id} className=''>
-          <Image
-            src={avatar}
-            alt={name}
-            width={100}
-            height={100}
-            className='rounded-full inline-block size-8 ring-2 ring-dark-100'
-            style={{ border: `3px solid ${color}` }}
-          />
-          <p>{name}</p>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Image
+                  src={avatar}
+                  alt={name}
+                  width={100}
+                  height={100}
+                  className='rounded-full inline-block size-8 ring-2 ring-dark-100'
+                  style={{ border: `3px solid ${color}` }}
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{name}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </li>
       ))}
     </ul>
