@@ -12,6 +12,3 @@
 </details>
 
 <h3>Live Hosted <a href="https://live-docs-nect-js.vercel.app/">Click this</a></h3>
-
-- [Google](https://www.google.com)
-- <a href="https://www.google.com" target="_blank">Google (Open in new tab)</a>
