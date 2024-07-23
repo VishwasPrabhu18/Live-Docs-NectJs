@@ -3,7 +3,6 @@ import { getDocument } from '@/lib/actions/room.actions';
 import { getClerkUsers } from '@/lib/actions/user.actions';
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation';
-import React from 'react'
 
 const Document = async ({ params: { id } }: SearchParamProps) => {
   
@@ -18,11 +17,12 @@ const Document = async ({ params: { id } }: SearchParamProps) => {
   if (!room) redirect('/');
 
   const userIds = Object.keys(room.usersAccesses);
+  
   const users = await getClerkUsers({ userIds });
 
   const usersData = users.map((user: User) => ({
     ...user,
-    userTypes: room.usersAccesses[user.email]?.includes("room:write")
+    userTypes: room.usersAccesses[user?.email]?.includes("room:write")
       ? "editor"
       : "viewer"
   }));
